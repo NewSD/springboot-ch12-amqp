@@ -5,11 +5,13 @@ import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.FanoutExchange;
 import org.springframework.amqp.core.Queue;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * Created by ami on 2019/7/22.
  * 所有到达FanoutExchange的消息转发给所有与它绑定的Queue
  */
+@Configuration
 public class RabbitFanoutConfig {
     public final static String FANOUTNAME = "sang-fanout";
     @Bean

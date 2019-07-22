@@ -1,5 +1,6 @@
 package com.niu;
 
+import com.niu.config.RabbitFanoutConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -22,6 +23,11 @@ public class SpringbootCh12AmqpApplicationTests {
 	public void directTest(){
 		rabbitTemplate.convertAndSend("hello-queue","hello direct!");
 
+	}
+
+	@Test
+	public void faoutTest(){
+		rabbitTemplate.convertAndSend(RabbitFanoutConfig.FANOUTNAME,null,"hello faout!");
 	}
 
 }

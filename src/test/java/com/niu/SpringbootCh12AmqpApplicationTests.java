@@ -1,9 +1,12 @@
 package com.niu;
 
 import com.niu.config.RabbitFanoutConfig;
+import com.niu.config.RabbitHeaderConfig;
 import com.niu.config.RabbitTopicConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.amqp.core.Message;
+import org.springframework.amqp.core.MessageBuilder;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -46,6 +49,19 @@ public class SpringbootCh12AmqpApplicationTests {
 
 
 
+	}
+
+
+	@Test
+	public void headerTest() {
+		Message nameMsg = MessageBuilder
+				.withBody("hello header! name-queue".getBytes())
+				.setHeader("name", "sang").build();
+		Message ageMsg = MessageBuilder
+				.withBody("hello header! age-queue".getBytes())
+				.setHeader("age", "99").build();
+		rabbitTemplate.send(RabbitHeaderConfig.HEADERNAME, null, ageMsg);
+		rabbitTemplate.send(RabbitHeaderConfig.HEADERNAME, null, nameMsg);
 	}
 
 }

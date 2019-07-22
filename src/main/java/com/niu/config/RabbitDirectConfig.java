@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * Created by ami on 2019/7/22.
+ * rabbit 的 direct 接收的
+ * 消息到达 DirectExchange时 被转发到与该条消息routing key相同的Queue
  */
 @Configuration
 public class RabbitDirectConfig {
